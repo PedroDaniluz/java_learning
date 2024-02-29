@@ -1,12 +1,10 @@
 package aula2;
 
-import java.util.Scanner;
-
-public class Main {
+public class SystemInOut {
     public static void main(String[] args) {
         double valor;
         int desconto;
-        Scanner sc = new Scanner(System.in);
+        java.util.Scanner sc = new java.util.Scanner(System.in);
 
         System.out.print("Insira o valor do produto: R$");
         valor = sc.nextDouble();
