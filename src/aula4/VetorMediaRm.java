@@ -6,12 +6,14 @@ public class VetorMediaRm {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int ind1 = 0, ind2 = 0;
-        int[] rm = new int[40];
-        int[] aprovados = new int[40];
-        double[] medias = new double[40];
-        double[] notas1 = new double[40];
-        double[] notas2 = new double[40];
-        while (true) {
+        final int MAX = 40;
+        int[] rm = new int[MAX];
+        int[] aprovados = new int[MAX];
+        double[] medias = new double[MAX];
+        double[] notas1 = new double[MAX];
+        double[] notas2 = new double[MAX];
+
+        while (ind1 < MAX) {
             System.out.print("(0 para sair) Insira o rm do aluno: ");
             rm[ind1] = scanner.nextInt();
             if (rm[ind1] == 0) break;
@@ -32,12 +34,15 @@ public class VetorMediaRm {
             ind1++;
         }
 
+        scanner.close();
+
+        System.out.println("\n************* *************\n");
+
         System.out.println("Alunos aprovados: ");
 
-        for (int i = 0; i < aprovados.length; i++) {
-            if (aprovados[i] != 0) {
-                System.out.println(aprovados[i]);
-            }
+        for (int i = 0; i < MAX; i++) {
+            if (aprovados[i] == 0) break;
+            System.out.println(aprovados[i]);
         }
     }
 }
