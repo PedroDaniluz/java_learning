@@ -1,4 +1,4 @@
-package aula5;
+package aula6;
 
 public class ConcatString {
     public static void main(String[] args) {
