@@ -21,6 +21,7 @@ public class SearchNomes {
                 else System.out.print("Não encontrado!\n\n");
             }
         }
+        scanner.close();
     }
 
     public static int menu(Scanner scanner) {
@@ -53,10 +54,9 @@ public class SearchNomes {
         System.out.print("Insira o nome do aluno para buscar: ");
         String busca = scanner.nextLine();
         boolean aux = false;
-        for (int i = 0; i < nome.length; i++) {
+        for (int i = 0; i < nome.length && !aux; i++) {
             if (nome[i].equalsIgnoreCase(busca)) {
                 aux = true;
-                break;
             } else if (nome[i] == null) {
                 break;
             }
