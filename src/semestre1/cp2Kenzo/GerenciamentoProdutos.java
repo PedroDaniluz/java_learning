@@ -8,7 +8,7 @@ package semestre1.cp2Kenzo;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MainKz {
+public class GerenciamentoProdutos {
     public static void main(String[] args) {
 
         int[] codigos = new int[50];
@@ -41,7 +41,7 @@ public class MainKz {
                 try {
                     System.out.print("Código: ");
                     codigo = scanner.nextInt();
-                    if (PackageFunctionsKz.codigoJaExiste(codigo, codigos, i)) {
+                    if (FuncoesGerenciamentoProdutos.codigoJaExiste(codigo, codigos, i)) {
                         System.out.println("Erro: Este código já está em uso. Por favor, escolha outro.");
                     } else {
                         break;
@@ -80,10 +80,10 @@ public class MainKz {
             System.out.println();
         }
 
-        double mediaPrecosProdutos = PackageFunctionsKz.mediaPrecos(precos, nProdutos);
+        double mediaPrecosProdutos = FuncoesGerenciamentoProdutos.mediaPrecos(precos, nProdutos);
         System.out.printf("PREÇO MÉDIO DOS PRODUTOS: R$%.2f", mediaPrecosProdutos);
 
-        int indiceMenorEstoque = PackageFunctionsKz.menorEstoque(estoque, nProdutos);
+        int indiceMenorEstoque = FuncoesGerenciamentoProdutos.menorEstoque(estoque, nProdutos);
 
         System.out.println("\nPRODUTO COM O MENOR ESTOQUE:");
         System.out.println("Código: " + codigos[indiceMenorEstoque]);
@@ -107,7 +107,7 @@ public class MainKz {
 
         System.out.println();
 
-        PackageFunctionsKz.buscaProduto(codigoProcurado, nProdutos, codigos, estoque, precos);
+        FuncoesGerenciamentoProdutos.buscaProduto(codigoProcurado, nProdutos, codigos, estoque, precos);
 
     }
 }
