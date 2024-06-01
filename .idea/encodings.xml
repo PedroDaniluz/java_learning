@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/src/aula8_eficiencia/busca/BuscaBinaria.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/aula8_eficiencia/busca/BuscaSequencial.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/aula8_eficiencia/ordenacao/BubbleSort.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/aula8_eficiencia/ordenacao/QuickSort.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/semestre1/globalSolutions/Coordenadas.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/semestre1/globalSolutions/OceanMonitor.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
