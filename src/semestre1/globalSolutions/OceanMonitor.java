@@ -71,7 +71,7 @@ public class OceanMonitor {
                 String linha = leArq.nextLine().replaceAll("[^0-9]", "");
 
                 // Adiciona as coordenadas ao objeto boia, gerando e adicionando tambem o hashCode
-                boiaTemp.coordenandas = String.format("Lat: -%s.%sº; Long: -%s.%sº", linha.substring(0,2), linha.substring(2,4), linha.substring(4,6), linha.substring(6,8));
+                boiaTemp.coordenandas = String.format("Lat: -%s.%sº; Long: -%s.%sº", linha.substring(0, 2), linha.substring(2, 4), linha.substring(4, 6), linha.substring(6, 8));
                 boiaTemp.hashCode = geraHash(linha);
 
                 // Adiciona o objeto boiaTemp ao registro
@@ -214,7 +214,7 @@ public class OceanMonitor {
                         // Validar entrada de coordenadas com base no formato do arquivo Coordenadas.txt:
                         do {
                             try {
-                                nova.coordenandas = String.format("Lat: -%s.%sº; Long: -%s.%sº", leitura.substring(0,2), leitura.substring(2,4), leitura.substring(4,6), leitura.substring(6,8));
+                                nova.coordenandas = String.format("Lat: -%s.%sº; Long: -%s.%sº", leitura.substring(0, 2), leitura.substring(2, 4), leitura.substring(4, 6), leitura.substring(6, 8));
                                 nova.hashCode = geraHash(leitura);
                             } catch (Exception e) {
                                 System.out.print("Formato invalido tente novamente (-25 10°-44 17°):");
@@ -299,6 +299,4 @@ public class OceanMonitor {
         // Fecha o objeto da classe Scanner le
         le.close();
     }
-
-
 }
