@@ -1,6 +1,7 @@
 /*
 
 * CARACTERES ESPECIAIS REMOVIDOS PARA EVITAR QUEBRA DE CODIFICACAO UTF-8
+* SIMBOLO DE GRAU (º) -> LINHAS 37, 74, 211, 217, 220
 
 ==================== GRUPO ====================
  -> Pedro Daniluz - 97697
@@ -40,7 +41,8 @@ public class OceanMonitor {
     // Funcao para gerar o hascode a partir das coordenadas
     public static int geraHash(String linha) {
         String hash = "";
-        int[] indices = {1, 2, 8, 9};
+        // Como a linha tera apenas numeros, os indices foram modificados
+        int[] indices = {0, 1, 4, 5};
         for (int indice : indices) {
             hash += linha.charAt(indice);
         }
@@ -51,7 +53,7 @@ public class OceanMonitor {
     // O retorno da funcao e essencial para delimitar o tamanho do registro
     public static int geraVetorBoias(Boia[] boias) {
         // Caminho do arquivo
-        String caminhoDoArquivo = "C:/Users/pedro/Documents/FIAP/2º Ano/java_learning/src/semestre1/globalSolutions/Coordenadas.txt";
+        String caminhoDoArquivo = "C:\\Users\\pedro\\Documents\\FIAP\\2º Ano\\Algoritmos de Alta Performance\\java_learning\\src\\semestre1\\globalSolutions\\Coordenadas.txt";
         int n = 0;
         try {
             // Criar um objeto File com o caminho do arquivo
@@ -66,10 +68,10 @@ public class OceanMonitor {
                 Boia boiaTemp = new Boia();
 
                 // Ler a proxima linha
-                String linha = leArq.nextLine();
+                String linha = leArq.nextLine().replaceAll("[^0-9]", "");
 
                 // Adiciona as coordenadas ao objeto boia, gerando e adicionando tambem o hashCode
-                boiaTemp.coordenandas = linha;
+                boiaTemp.coordenandas = String.format("Lat: -%s.%sº; Long: -%s.%sº", linha.substring(0,2), linha.substring(2,4), linha.substring(4,6), linha.substring(6,8));
                 boiaTemp.hashCode = geraHash(linha);
 
                 // Adiciona o objeto boiaTemp ao registro
@@ -77,8 +79,8 @@ public class OceanMonitor {
                 n++;
             }
         } catch (FileNotFoundException e) {
-            // Caso o arquivo não seja encontrado
-            System.out.println("Arquivo não encontrado: " + e.getMessage());
+            // Caso o arquivo nao seja encontrado
+            System.out.println("Arquivo nao encontrado: " + e.getMessage());
         }
         return n;
     }
@@ -194,11 +196,11 @@ public class OceanMonitor {
                     break;
                 case 1:
                     // Exibe todos os dados de cada boia, a partir do metodo 'exibir' do objeto Boia
-                    System.out.println("=========== REGISTRO DE BOIAS ===========");
+                    System.out.println("=============== REGISTRO DE BOIAS ===============");
                     for (int i = 0; i < lenBoias; i++) {
-                        System.out.printf("\n============ Boia %d ============\n", i + 1);
+                        System.out.printf("\n================== Boia %d ==================\n", i + 1);
                         boias[i].exibir();
-                        System.out.println("===============================");
+                        System.out.println("============================================");
                     }
                     System.out.println();
                     break;
@@ -206,14 +208,14 @@ public class OceanMonitor {
                     // Nao permite que o limite de registro seja superado
                     if (lenBoias < N) {
                         le.nextLine();
-                        System.out.print("Insira as coordenadas no formato (-25 10°-44 17°): ");
+                        System.out.print("Insira as coordenadas no formato (-25.10°-44.17°): ");
                         Boia nova = new Boia();
-                        nova.coordenandas = le.nextLine();
-
+                        String leitura = le.nextLine().replaceAll("[^0-9]", "");
                         // Validar entrada de coordenadas com base no formato do arquivo Coordenadas.txt:
                         do {
                             try {
-                                nova.hashCode = geraHash(nova.coordenandas);
+                                nova.coordenandas = String.format("Lat: -%s.%sº; Long: -%s.%sº", leitura.substring(0,2), leitura.substring(2,4), leitura.substring(4,6), leitura.substring(6,8));
+                                nova.hashCode = geraHash(leitura);
                             } catch (Exception e) {
                                 System.out.print("Formato invalido tente novamente (-25 10°-44 17°):");
                                 nova.coordenandas = le.nextLine();
@@ -248,6 +250,8 @@ public class OceanMonitor {
 
                             boias[lenBoias] = nova;
                             lenBoias++;
+
+                            insertionSort(boias, lenBoias);
                         }
 
                     } else {
@@ -259,8 +263,9 @@ public class OceanMonitor {
                     inserirSalTemp(boias, lenBoias);
                     break;
                 case 4:
-                    // Para a pesquisa binaria funcionar, o vetor deve ser ordenado
-                    insertionSort(boias, lenBoias);
+                    // Para a pesquisa binaria funcionar, o vetor deve ser ordenado. Como esse processo
+                    // já foi realizado anteriormente (e apos adicao de novas boias), nao precisamos reordenar o vetor
+                    // ***** insertionSort(boias, lenBoias) *****;
 
                     int hashBuscado;
 
@@ -281,9 +286,9 @@ public class OceanMonitor {
                     if (pos == -1) {
                         System.out.println("\nBoia nao encontrada!\n");
                     } else {
-                        System.out.printf("\n============ Boia %d ============\n", pos + 1);
+                        System.out.printf("\n================== Boia %d ==================\n", pos + 1);
                         boias[pos].exibir();
-                        System.out.println("===============================\n");
+                        System.out.println("============================================\n");
                     }
                     break;
                 default:
